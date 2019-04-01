@@ -7,6 +7,7 @@ import ProductInfo from './product-info/ProductInfo';
 import {getProductBy} from '../api/products.api';
 
 const DEFAULT_BASE_VIEW = 'all_products';
+const SELECT_TO_COUNT = "Select The View..";
 export default class DashBoard extends Component {
     getProducts = (params) => {
 
@@ -14,7 +15,9 @@ export default class DashBoard extends Component {
 
             this.setState({
                 'products': [...products.data.data],
-                'totalProducts': products.data.count
+                'totalProducts': products.data.count,
+                'productViewsCount':{...this.state.productViewsCount
+                    ,[this.state.params.base_view ]:products.data.count}
             });
         }).catch(error => {
 
@@ -35,8 +38,11 @@ export default class DashBoard extends Component {
             },
             selectedProduct: 0,
             products: [],
-            totalProducts: 0
-            //
+            totalProducts: 0,
+            productViewsCount: {
+                'all_products': SELECT_TO_COUNT,
+                'increase_opportunity': SELECT_TO_COUNT
+            }
         };
 
         this.handleViewChange = this.handleViewChange.bind(this);
@@ -95,11 +101,11 @@ export default class DashBoard extends Component {
             <>
                 <div className="left">
                     <div className="header">
-                        <h1> Views</h1>
+                        <h1 className="ft-16 p-5 txt-blue"> Views</h1>
                     </div>
                     <div className="views-list-container">
                         <ProductView handleViewChange={this.handleViewChange}
-                                     selectedView={this.state.params.base_view}/>
+                                     selectedView={this.state.params.base_view} productViewsCount={this.state.productViewsCount}/>
                     </div>
                 </div>
                 <div className="middle">
@@ -112,21 +118,14 @@ export default class DashBoard extends Component {
 
                 </div>
                 <div className="right">
-                    <ProductInfo selectedProduct={this.state.selectedProduct} key={this.state.selectedProduct}/>
+                    {this.state.selectedProduct === 0 ? <div>Loading...</div> :
+                        <div className="product-detail">
+                            <ProductInfo selectedProduct={this.state.selectedProduct} key={this.state.selectedProduct}/>
+                        </div>
+                    }
+
                 </div>
-                {/*<div>*/}
-                {/*<ProductView handleViewChange={this.handleViewChange}*/}
-                {/*selectedView={this.state.params.base_view}/>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*<ProductListing products={this.state.products} totalProducts={this.state.totalProducts}*/}
-                {/*searchHandler={this.searchHandler}*/}
-                {/*sortHandler={this.sortHandler} handlePagination={this.handlePagination}*/}
-                {/*start={this.state.params.start} limit={this.state.params.limit}/>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*Sidebar 3*/}
-                {/*</div>*/}
+
             </>
         );
     }

@@ -56,11 +56,11 @@ const TileInfo = (props) => {
 
     return (
         <div>
-            <p className="txt-blue">{props.title}</p>
+            <p className="txt-blue text-bold tile-title">{props.title}</p>
             {/*<p>{params.productInfo[YOUR_PRICE].toUpperCase() === 'NA'*/}
             {/*? '--'*/}
             {/*: productInfo[YOUR_PRICE]}</p>*/}
-            <p>{props.value}</p>
+            <p className="text-muted text-bold txt-blue">{props.value}</p>
             {props.children}
         </div>
     );
@@ -89,16 +89,19 @@ export default class ProductInfo extends Component {
 
     render() {
         let {productInfo} = this.state;
-        let {selectedProduct}= this.props;
-        if(selectedProduct ===0) return <div> Select Product to View Details</div>;
+        let {selectedProduct} = this.props;
+        // if (selectedProduct === 0) return <div> Select Product to View Details</div>;
         if (productInfo.length === 0) return <div>Loading...</div>;
-        return <div className="desc-card">
+        return (<div className="desc-card m-20">
             <div className="product-header">
-                <h1>Header </h1>
+                <p><span className="text-muted text-bold">{productInfo.stock.toUpperCase()}</span></p>
+                <h1 className="product-name txt-blue" title={productInfo.bundle_name}>{productInfo.bundle_name}</h1>
+                <p className="text-muted text-bold product-sku m-5">{productInfo.sku}</p>
             </div>
             <div className="product-desc">
                 <div className="product-image">
-                    <h1> Image here</h1>
+                    <img className="solid-border-1 border-radius-4 product-thumbnail size-256 float-left"
+                         src={productInfo.thumbnail}/>
                 </div>
                 <div className="product-detail-tiles">
                     <ul className="product-tiles">
@@ -133,7 +136,7 @@ export default class ProductInfo extends Component {
                                           value={productInfo[PRICE_GAP.key]}/>
                             </div>
                         </li>
-                        <li className="border-bottom">
+                        <li className>
                             <div className="desc-tile border-right">
                                 <TileInfo title={PRICE_INCREASE.title}
                                           value={productInfo[PRICE_INCREASE.key]}/>
@@ -148,7 +151,7 @@ export default class ProductInfo extends Component {
                                           'OUT OF STOCK'
                                               ? 0
                                               : productInfo[STOCK.key]}/${productInfo[OUT_OF_STOCK_COMPETITORS.key]}`}>
-                                    <p>{OUT_OF_STOCK_COMPETITORS.title}</p>
+                                    <p className="text-muted text-bold txt-blue">{OUT_OF_STOCK_COMPETITORS.title}</p>
                                 </TileInfo>
                             </div>
                         </li>
@@ -158,6 +161,6 @@ export default class ProductInfo extends Component {
                 </div>
 
             </div>
-        </div>;
+        </div>);
     }
 }

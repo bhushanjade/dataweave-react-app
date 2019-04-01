@@ -19,18 +19,33 @@ export default class ProductCard extends Component {
     }
 
     render() {
-        let {product,selectedProduct} = this.props;
-        console.log("selectedProduct=",selectedProduct);
-        console.log("bn", product["bundle_id"]);
+        let {product, selectedProduct} = this.props;
+        let outOfStock = product['out_of_stock_seed_days'];
+        let isValid = product['is_valid'];
         return (
-            <div className={selectedProduct === product["bundle_id"] ? "product-list-card card solid-border-1 border-radius-4 product-selected" : "product-list-card card solid-border-1 border-radius-4"}
-                 onClick={this.handleProductDetailToggle}>
+            <div
+                className={selectedProduct === product["bundle_id"] ? "product-list-card card solid-border-1 border-radius-4 product-selected" : "product-list-card card solid-border-1 border-radius-4"}
+                onClick={this.handleProductDetailToggle}>
                 <div className="row">
 
                     <div className="column">
                         <p className="price text-bold">&#8377;{product.available_price}</p>
                         <h1 className="product-name" title={product.bundle_name}>{product.bundle_name}</h1>
-                        <p className="text-muted text-bold product-sku">{product.sku}</p>
+                        {product.stock && product.is_valid ?
+                            <>
+                                <p className="text-muted text-bold product-sku m-5">{product.sku}</p>
+                                <p className="text-muted text-bold m-5"><span className="txt-blue">Increase Upto </span><span
+                                    className="txt-red">&#8377;{product.price_opportunity_increase_by}</span> <span
+                                    className="txt-blue">(<span
+                                    className="txt-red">{product.price_opportunity_increase_by_percentage}</span>)%</span>
+                                </p>
+                                <p className="text-muted text-bold txt-blue m-5">Opportunity exists from
+                                    last {product.price_opportunity_days} days(s)</p>
+                            </>
+                            : null}
+                        {/*<p className="text-muted text-bold product-sku m-5">{product.sku}</p>*/}
+                        {/*<p className="text-muted text-bold m-5"><span className="txt-blue">Increase Upto </span><span className="txt-red">&#8377;{product.price_opportunity_increase_by}</span> <span className="txt-blue">(<span className="txt-red">{product.price_opportunity_increase_by_percentage}</span>)%</span></p>*/}
+                        {/*<p className="text-muted text-bold txt-blue m-5">Opportunity exists from last {product.price_opportunity_days} days(s)</p>*/}
                         {!product.stock ? <p>{STOCK}<span>{`${product.stock}`}Day(s)</span></p> : null}
                         {!product.is_valid ? <p>{PRODUCT_NOT_AVAILABLE}</p> : null}
                     </div>

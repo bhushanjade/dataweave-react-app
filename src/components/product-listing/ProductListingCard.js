@@ -12,8 +12,11 @@ export default class ProductListingCard extends PureComponent {
                                                         toggleProductDetail={this.props.toggleProductDetail}/>)}
 
             </div>
-            <span
-                onClick={this.props.handlePagination}>{this.props.totalProducts - (this.props.start - 1 + this.props.limit)} To Load More</span>
+            {this.props.totalProducts > 0 ?
+                <span className="load-more"
+                      onClick={this.props.handlePagination}>{this.props.totalProducts - (this.props.start - 1 + this.props.limit)} To Load More</span>
+                : null
+            }
         </>
     }
 }

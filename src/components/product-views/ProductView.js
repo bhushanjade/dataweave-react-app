@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { fetchProductBYViews } from '../../api/product.api';
+import React, {Component} from 'react';
+
 
 const views = [
     {
@@ -14,7 +14,12 @@ const views = [
 ];
 
 const ViewItem = (props) => (
-    <li key={props.view.key} className={props.view.key === props.selectedView ? "selected" : null} onClick={props.onClick}>{props.view.name}</li>
+
+    <li key={props.view.key} className={props.view.key === props.selectedView ? "selected" : null}
+        onClick={props.onClick}>{props.view.name}
+        <span
+        className="float-right txt-blue text-bold">{props.productViewsCount[props.view.key] || 0}</span>
+    </li>
 );
 export default class ProductView extends Component {
 
@@ -22,9 +27,9 @@ export default class ProductView extends Component {
     render() {
         return <ul className="views-list">
             {
-                views.map(view => <ViewItem selectedView={this.props.selectedView} key={view.key} view={view}
+                views.map(view => <ViewItem selectedView={this.props.selectedView} key={view.key} view={view} productViewsCount={this.props.productViewsCount}
                                             onClick={this.props.handleViewChange.bind(
-                                                this, view.key)} />)
+                                                this, view.key)}/>)
             }
         </ul>;
     }

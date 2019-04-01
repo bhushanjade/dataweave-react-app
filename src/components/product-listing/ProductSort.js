@@ -41,7 +41,7 @@ export default class ProductSort extends Component {
         let direction = !this.state.direction;
         this.setState({direction});
 
-        if (typeof this.props.sortHandler === 'function' ) {
+        if (typeof this.props.sortHandler === 'function') {
             this.props.sortHandler({
                 'sort_on': this.state.value,
                 'sort_by': direction ? 'asc' : 'desc'
@@ -64,9 +64,9 @@ export default class ProductSort extends Component {
         console.log(this.state);
 
         let {direction} = this.state;
-        let directionText = direction ? HIGH_TO_LOW : LOW_TO_HIGH;
+        let directionText = direction ? LOW_TO_HIGH : HIGH_TO_LOW;
         return <div className="product-sort">
-            <span onClick={this.changeDirection}>{direction ? `${HIGH_DIRECTION}` : `${LOW_DIRECTION}`} </span>
+            <span onClick={this.changeDirection}>{direction ? `${LOW_DIRECTION}` : `${HIGH_DIRECTION}`} </span>
             <select name="sortBy" value={this.state.value} onChange={this.handleSortChange}>
                 <option></option>
                 {Sort_Options.map((sortOption) => <option key={sortOption.value}

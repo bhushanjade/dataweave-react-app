@@ -31,7 +31,7 @@ code {
 .middle {
     order: 2;
     /*background: #6e5e22;*/
-    width: 25%;
+    width: 30%;
     height: 300px;
     height: 100vh;
 }
@@ -39,7 +39,7 @@ code {
 .right {
     order: 3;
     /*background: yellow;*/
-    width: 60%;
+    width: 55%;
     height: 300px;
 }
 
@@ -79,6 +79,35 @@ code {
     cursor: pointer;
 }
 
+.ft-16 {
+    font-size: 16px;
+}
+
+.p5 {
+    padding: 5px;
+}
+
+.views-list li span {
+    font-weight: bold;
+    color: #b3e3ee;
+}
+
+.m-5 {
+    margin: 5px !important;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.product-detail {
+    height: 400px;
+    border: #cac7c5 1px solid;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 1px 4px 0px #888888;
+}
 
 @media screen and (min-width: 300px) and (max-width: 1024px) {
     .container {
