@@ -1,5 +1,60 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### [React App Powered by Dataweave API]
+### Packages USED :
+- [axios](https://github.com/axios/axios) => FOR API requests.
+- [API](Dataweave API)[https://app.dataweave.com/]
+    - End Points Used :
+        - `bundles` => Get products by view (Only 2 views 1. All Products & 2.Margin gain opportunities)
+        - `bundle_overview` => Get Selected product/bundle details.                            
+### Configuration 
+- Create `.env` file & add 
+    ```
+    REACT_APP_API_KEY=<API_KEY>
+    ```
+
+# Features In Current Version:
+1. User Can select product from following views
+    - All Products
+    - Margin Gain Opportunities
+2. Can Search & filter 
+3. On selection of product detailed information is shown.
+
+# Future/TODO Implementation:
+
+Some of the things that I want to implement in the future version are:
+
+1. Refactor reduant things
+2. Load more handling.. showing all products till now. Currently shows only 20 per page
+3. Scroll the product detail page to view port as user scrolls down.
+
+```
+\---src
+    |   config.js => API URL etc set here.
+    |   index.css
+    |   app.css
+    +---api
+    |       products.api.js => API calls.
+    |
+    \---components => All react components 
+        |   DashBoard.js => Dashboard holds all components
+        |
+        +---product-info => Detailed Product page. Right bar
+        |       product-info.css
+        |       ProductInfo.js
+        |
+        +---product-listing => product listing page. middle sidebar
+        |       product-card.css
+        |       ProductCard.js
+        |       ProductFilter.js
+        |       ProductListing.js
+        |       ProductListingCard.js
+        |       ProductSearch.js => Search Component
+        |       ProductSort.js => Sort Component
+        |
+        +---product-views => Product Views Component. Left Bar
+        |       ProductView.js
+```
 ## Available Scripts
 
 In the project directory, you can run:
