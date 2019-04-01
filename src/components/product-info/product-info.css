@@ -1,0 +1,49 @@
+* {
+    font-family: arial;
+    font-size: 13px
+}
+
+.product-image {
+    float: left;
+    width: 25%;
+}
+
+.product-detail-tiles {
+    float: right;
+    width: 75%;
+}
+
+ul .product-tiles {
+    height: auto;
+}
+
+.product-tiles li {
+    list-style-type: none;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+p {
+    margin: 3px 0px
+}
+
+.desc-tile {
+    text-align: center;
+    width: 33%;
+    display: inline-block;
+}
+
+.border-bottom {
+    border-bottom: 1px solid black;
+}
+
+.border-right {
+    border-right: 1px solid black;
+}
+
+.txt-blue {
+    color: #4963a7
+}
+
+
